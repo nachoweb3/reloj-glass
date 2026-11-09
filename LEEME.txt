@@ -11,6 +11,7 @@ QUE HAY EN ESTE ZIP
   Reloj-glass-Setup-1.1.0.exe   el instalador (pasos en INSTALAR)
   LEEME.txt                     esta nota
   capturas\widget.png           el reloj sobre el escritorio
+  capturas\widget.gif           el reloj en movimiento (bucle de 9 s)
   capturas\ajustes.png          la ventana de Ajustes
 
 INSTALAR
