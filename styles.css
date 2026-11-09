@@ -1,0 +1,587 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Valores por defecto del tema: config.json los sobrescribe al arrancar. */
+:root {
+  --font-family: "Segoe UI Variable Display", "Segoe UI", Inter, system-ui, sans-serif;
+  --text-color: #e9feff;
+  --glow-color: #38e8ff;
+  --shadow-color: #001018;
+  --accent: #38e8ff;
+  --panel-alpha: 0.62;
+  --clock-size: 92px;
+  --clock-weight: 200;
+  --clock-tracking: -0.05em;
+  --seconds-size: 26px;
+  --handle-size: 33px;
+  --handle-weight: 400;
+  --handle-tracking: 0.13em;
+  /* Contorno (separación) y halo. */
+  --clock-stroke: 1.6px;
+  --handle-stroke: 1.2px;
+  --stroke-opacity: 85%;
+  --clock-glow-size: 14px;
+  --clock-glow-opacity: 80%;
+  --handle-glow-size: 22px;
+  --handle-glow-opacity: 85%;
+}
+
+html,
+body {
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  padding: 7px;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.widget {
+  width: 100%;
+  height: 100%;
+  animation: appear 1s cubic-bezier(0.2, 0.85, 0.2, 1) both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* ---------- Panel de cristal ciberpunk ---------- */
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 13px 18px 12px;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--accent) 62%, transparent);
+  background-color: rgba(3, 14, 24, var(--panel-alpha));
+  background-image:
+    radial-gradient(
+      120% 92% at 6% -14%,
+      color-mix(in srgb, var(--accent) 28%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      86% 120% at 104% 116%,
+      color-mix(in srgb, #1f6bff 30%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(158deg, rgba(255, 255, 255, 0.1), transparent 40%),
+    linear-gradient(180deg, transparent 42%, color-mix(in srgb, #000 32%, transparent));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 30px color-mix(in srgb, var(--accent) 20%, transparent),
+    inset 0 -20px 34px color-mix(in srgb, #000 46%, transparent),
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 18px 42px rgba(0, 0, 0, 0.5),
+    0 0 12px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 0 28px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* Rejilla tenue, desvanecida hacia los bordes. */
+.panel__grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 14%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 14%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 22px 22px;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(115% 90% at 50% 46%, #000 24%, transparent 80%);
+  mask-image: radial-gradient(115% 90% at 50% 46%, #000 24%, transparent 80%);
+}
+
+/* Aura que respira detrás del reloj. */
+.panel__aura {
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 120%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 65% at 18% 8%,
+    color-mix(in srgb, var(--accent) 26%, transparent),
+    transparent 68%
+  );
+  animation: breathe 7.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Banda de luz que barre el panel. */
+.panel__scan {
+  position: absolute;
+  top: -45%;
+  left: -65%;
+  z-index: 0;
+  width: 55%;
+  height: 190%;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 24%, transparent),
+    transparent
+  );
+  filter: blur(7px);
+  transform: rotate(12deg);
+  animation: sweep 9s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(0) rotate(12deg);
+  }
+  14% {
+    opacity: 0.85;
+  }
+  62% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(430%) rotate(12deg);
+  }
+}
+
+/* Micro líneas horizontales tipo CRT. */
+.panel__ring {
+  position: absolute;
+  inset: 3px;
+  z-index: 1;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 19px;
+  box-shadow: inset 0 0 18px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.panel__lines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0 1px,
+    transparent 1px 3px
+  );
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+}
+
+/* Esquinas HUD. */
+.corner {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 82%, #ffffff);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 70%, transparent));
+}
+
+.corner--tl {
+  top: 7px;
+  left: 7px;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 5px 0 0 0;
+}
+
+.corner--tr {
+  top: 7px;
+  right: 7px;
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 5px 0 0;
+}
+
+.corner--bl {
+  bottom: 7px;
+  left: 7px;
+  border-right: 0;
+  border-top: 0;
+  border-radius: 0 0 0 5px;
+}
+
+.corner--br {
+  right: 7px;
+  bottom: 7px;
+  border-left: 0;
+  border-top: 0;
+  border-radius: 0 0 5px 0;
+}
+
+/* ---------- Micro HUD superior ---------- */
+
+.hud {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  margin-bottom: 5px;
+  opacity: 0.72;
+}
+
+.hud__bar {
+  flex: 1;
+  height: 1px;
+}
+
+.hud__bar--l {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 75%, transparent)
+  );
+}
+
+.hud__bar--r {
+  background: linear-gradient(
+    270deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 75%, transparent)
+  );
+}
+
+.hud__dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.hud__dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--accent) 90%, transparent);
+  animation: blink 2.8s ease-in-out infinite;
+}
+
+.hud__dots i:nth-child(2) {
+  animation-delay: 0.35s;
+  opacity: 0.7;
+}
+
+.hud__dots i:nth-child(3) {
+  animation-delay: 0.7s;
+  opacity: 0.45;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- Reloj ---------- */
+
+.clock {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Degradado blanco→cian recortado sobre las letras, con contorno y halo. */
+.glass {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #feffff 46%,
+    #e8fdff 70%,
+    color-mix(in srgb, var(--accent) 22%, #ffffff) 88%,
+    color-mix(in srgb, var(--accent) 32%, #ffffff) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: var(--clock-stroke)
+    color-mix(in srgb, var(--shadow-color) var(--stroke-opacity), transparent);
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 var(--clock-glow-size) color-mix(in srgb, var(--glow-color) var(--clock-glow-opacity), transparent))
+    drop-shadow(0 0 1px color-mix(in srgb, var(--glow-color) 70%, transparent))
+    drop-shadow(0 2px 7px color-mix(in srgb, var(--shadow-color) 50%, transparent));
+}
+
+.time {
+  display: flex;
+  font-size: var(--clock-size);
+  font-weight: var(--clock-weight);
+  line-height: 0.9;
+  letter-spacing: var(--clock-tracking);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "ss01" 1;
+}
+
+.colon {
+  /* Punto y coma siempre encendido: el degradado del reloj lo dejaba casi invisible. */
+  background-image: none;
+  -webkit-text-fill-color: #eaffff;
+  color: #eaffff;
+  opacity: 0.95;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 90%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Chip de segundos con marco neón. */
+.sec {
+  position: relative;
+  margin-left: 4px;
+  padding: 4px 9px 5px;
+  font-size: var(--seconds-size);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: #f2ffff;
+  text-shadow: 0 0 9px color-mix(in srgb, var(--accent) 95%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 72%, transparent);
+  border-radius: 7px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 30%, transparent),
+    color-mix(in srgb, var(--accent) 10%, transparent)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 10px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 0 14px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* ---------- Separador ---------- */
+
+.rule {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 74%;
+  height: 1px;
+  margin: 8px 0 7px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 65%, transparent) 22%,
+    color-mix(in srgb, var(--accent) 85%, #ffffff) 50%,
+    color-mix(in srgb, var(--accent) 65%, transparent) 78%,
+    transparent
+  );
+  opacity: 0.8;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.rule__gem {
+  width: 5px;
+  height: 5px;
+  transform: rotate(45deg);
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff, 0 0 14px color-mix(in srgb, var(--accent) 95%, transparent);
+}
+
+/* ---------- Handle ---------- */
+
+.handle-wrap {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 0 4px;
+}
+
+.handle {
+  font-size: var(--handle-size);
+  font-weight: var(--handle-weight);
+  letter-spacing: var(--handle-tracking);
+  padding-left: var(--handle-tracking);
+  line-height: 1.12;
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(
+      179deg,
+      #ffffff 0%,
+      #f4ffff 28%,
+      color-mix(in srgb, var(--accent) 42%, #ffffff) 52%,
+      #ffffff 72%,
+      #ffffff 100%
+    ),
+    linear-gradient(
+      104deg,
+      transparent 36%,
+      color-mix(in srgb, #ffffff 90%, transparent) 47%,
+      #ffffff 51%,
+      color-mix(in srgb, #ffffff 90%, transparent) 55%,
+      transparent 66%
+    );
+  background-size: 100% 100%, 240% 100%;
+  background-position: 0 0, 165% 0;
+  background-repeat: no-repeat, no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: var(--handle-stroke)
+    color-mix(in srgb, var(--shadow-color) var(--stroke-opacity), transparent);
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 var(--handle-glow-size) color-mix(in srgb, var(--glow-color) var(--handle-glow-opacity), transparent))
+    drop-shadow(0 0 1px color-mix(in srgb, var(--glow-color) 65%, transparent))
+    drop-shadow(0 2px 7px color-mix(in srgb, var(--shadow-color) 45%, transparent));
+  animation: sheen 5.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+@keyframes sheen {
+  0%,
+  52% {
+    background-position: 0 0, 165% 0;
+  }
+  100% {
+    background-position: 0 0, -40% 0;
+  }
+}
+
+/* Nombres largos: bajan de tamano para no salirse del panel. */
+.handle--md {
+  font-size: calc(var(--handle-size) * 0.74);
+}
+
+.handle--sm {
+  font-size: calc(var(--handle-size) * 0.56);
+}
+
+/* Destellos tipo estrella de cuatro puntas. */
+.spark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(180deg, #ffffff, color-mix(in srgb, var(--accent) 70%, #ffffff));
+  clip-path: polygon(
+    50% 0%,
+    59% 41%,
+    100% 50%,
+    59% 59%,
+    50% 100%,
+    41% 59%,
+    0% 50%,
+    41% 41%
+  );
+  opacity: 0;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 100%, transparent))
+    drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 55%, transparent));
+  animation: twinkle 3.8s ease-in-out infinite;
+}
+
+.spark-a {
+  left: -13px;
+  top: -11px;
+}
+
+.spark-b {
+  right: -11px;
+  bottom: -9px;
+  width: 8px;
+  height: 8px;
+  animation-delay: 1.9s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.35) rotate(0deg);
+  }
+  42% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+  56% {
+    opacity: 0.85;
+    transform: scale(0.8) rotate(60deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .widget,
+  .panel__aura,
+  .panel__scan,
+  .hud__dots i,
+  .colon,
+  .handle,
+  .spark {
+    animation: none;
+  }
+
+  .panel__scan {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "glass-clock-widget",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Reloj glassmorphism transparente para el escritorio con @nacho_web3",
+  "author": "nacho_web3",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "icon": "electron tools/make-icon.js",
+    "build": "electron-builder --win portable nsis --x64 --publish never",
+    "build:dir": "electron-builder --win --dir --publish never"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.nachoweb3.glassclock",
+    "productName": "Reloj glass",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "contrast.js",
+      "config.js",
+      "config.json",
+      "index.html",
+      "styles.css",
+      "renderer.js",
+      "name.html",
+      "name.css",
+      "name.js",
+      "name-store.js",
+      "settings.html",
+      "settings.css",
+      "settings.js",
+      "settings-store.js",
+      "assets/icon.png",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "Reloj-glass-${version}.exe"
+    },
+    "nsis": {
+      "artifactName": "Reloj-glass-Setup-${version}.exe",
+      "include": "build/installer.nsh",
+      "installerLanguages": [
+        "es_ES"
+      ],
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Reloj glass",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

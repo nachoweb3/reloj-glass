@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vista previa · reloj glass</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background:
+          radial-gradient(900px 640px at 14% 18%, #123c5c 0%, transparent 62%),
+          radial-gradient(820px 520px at 86% 12%, #0b2a45 0%, transparent 60%),
+          radial-gradient(760px 620px at 72% 92%, #2a1a4e 0%, transparent 58%),
+          linear-gradient(158deg, #05080f 0%, #0a1524 46%, #060b14 100%);
+        overflow: hidden;
+      }
+
+      .desk {
+        width: 380px;
+        height: 210px;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .hint {
+        position: fixed;
+        left: 18px;
+        bottom: 16px;
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.42);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="desk"><iframe id="widget" src="../index.html" title="Reloj glass widget"></iframe></div>
+    <p class="hint">Vista previa sobre un fondo de escritorio de ejemplo</p>
+    <script>
+      // La vista previa aplica el mismo config.json que el widget nativo.
+      const frame = document.getElementById('widget');
+      frame.addEventListener('load', async () => {
+        try {
+          const response = await fetch('../config.json', { cache: 'no-store' });
+          if (!response.ok) return;
+          const config = await response.json();
+          const size = config.size || {};
+          if (size.width) frame.parentElement.style.width = `${size.width}px`;
+          if (size.height) frame.parentElement.style.height = `${size.height}px`;
+          if (frame.contentWindow.applyWidgetConfig) {
+            frame.contentWindow.applyWidgetConfig(config);
+          }
+        } catch {
+          /* vista previa sin config: usa los valores por defecto */
+        }
+      });
+    </script>
+  </body>
+</html>

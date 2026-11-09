@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'"
+    />
+    <title>Reloj glass</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="widget" aria-label="Reloj">
+      <section class="panel">
+        <div class="panel__grid" aria-hidden="true"></div>
+        <div class="panel__aura" aria-hidden="true"></div>
+        <div class="panel__scan" aria-hidden="true"></div>
+        <div class="panel__lines" aria-hidden="true"></div>
+        <div class="panel__ring" aria-hidden="true"></div>
+        <span class="corner corner--tl" aria-hidden="true"></span>
+        <span class="corner corner--tr" aria-hidden="true"></span>
+        <span class="corner corner--bl" aria-hidden="true"></span>
+        <span class="corner corner--br" aria-hidden="true"></span>
+
+        <div class="hud" aria-hidden="true">
+          <span class="hud__bar hud__bar--l"></span>
+          <span class="hud__dots"><i></i><i></i><i></i></span>
+          <span class="hud__bar hud__bar--r"></span>
+        </div>
+
+        <div class="clock">
+          <div class="time glass">
+            <span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span>
+          </div>
+          <div class="sec" id="seconds">00</div>
+        </div>
+
+        <div class="rule" aria-hidden="true"><span class="rule__gem"></span></div>
+
+        <div class="handle-wrap">
+          <span class="spark spark-a" aria-hidden="true"></span>
+          <div class="handle" id="handle">@nacho_web3</div>
+          <span class="spark spark-b" aria-hidden="true"></span>
+        </div>
+      </section>
+    </main>
+    <script src="config.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "_nota": "Tamanos en px (acepta numero o texto tipo \"2px\"), opacidades en % (0-100, numero o texto tipo \"62%\"). Reinicia el widget (arrancar.bat) tras editar este archivo.",
+  "size": {
+    "width": 380,
+    "height": 210
+  },
+  "font": {
+    "family": "\"Segoe UI Variable Display\", \"Segoe UI\", Inter, system-ui, sans-serif"
+  },
+  "clock": {
+    "fontSize": 92,
+    "fontWeight": 500,
+    "letterSpacing": -0.04,
+    "secondsSize": 26
+  },
+  "handle": {
+    "_nota": "text = nombre que se muestra bajo el reloj. Tambien se cambia con click derecho sobre el widget -> Cambiar nombre...",
+    "text": "@nacho_web3",
+    "fontSize": 33,
+    "fontWeight": 500,
+    "letterSpacing": 0.13
+  },
+  "outline": {
+    "_nota": "Ajuste manual del contorno. El modo automatico lo reemplaza segun el wallpaper.",
+    "clockWidth": 1.6,
+    "handleWidth": 1.2,
+    "opacity": 85
+  },
+  "glow": {
+    "_nota": "Ajuste manual del halo. El modo automatico cambia la intensidad, no el radio.",
+    "clockRadius": 14,
+    "clockOpacity": 80,
+    "handleRadius": 22,
+    "handleOpacity": 85
+  },
+  "panel": {
+    "_nota": "Fondo de cristal del widget. opacity 0 = sin fondo, 100 = opaco.",
+    "opacity": 62
+  },
+  "auto": {
+    "_nota": "Adapta contorno y halo al wallpaper que haya detras del widget. enabled=false usa outline/glow tal cual. pollSeconds = cada cuanto vuelve a mirar.",
+    "enabled": true,
+    "pollSeconds": 20
+  },
+  "colors": {
+    "_nota": "accent = neon del panel (bordes, rejilla, segundos).",
+    "text": "#e9feff",
+    "glow": "#38e8ff",
+    "shadow": "#001018",
+    "accent": "#38e8ff"
+  }
+}

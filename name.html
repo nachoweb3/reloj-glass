@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'"
+    />
+    <title>Tu nombre</title>
+    <link rel="stylesheet" href="name.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1 class="card__title">Tu nombre</h1>
+      <p class="card__hint">Es lo que aparece debajo del reloj, por ejemplo <b>@nacho_web3</b>.</p>
+
+      <input
+        id="name"
+        class="field"
+        type="text"
+        maxlength="28"
+        spellcheck="false"
+        autocomplete="off"
+        aria-label="Tu nombre"
+        placeholder="@tunombre"
+      />
+
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="actions">
+        <button class="btn" id="cancel" type="button">Cancelar</button>
+        <button class="btn btn--primary" id="save" type="button">Guardar</button>
+      </div>
+    </main>
+    <script src="name.js"></script>
+  </body>
+</html>

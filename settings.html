@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'"
+    />
+    <title>Ajustes del reloj</title>
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1 class="card__title">Ajustes</h1>
+
+      <section class="group">
+        <div class="group__head">
+          <span class="group__label">Tamaño</span>
+          <span class="group__value" id="dims">380 × 210</span>
+        </div>
+        <div class="sizes" id="sizes">
+          <button class="size" type="button" data-size="pequeno" title="Pequeño">S</button>
+          <button class="size" type="button" data-size="normal" title="Normal">M</button>
+          <button class="size" type="button" data-size="grande" title="Grande">L</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="group__head">
+          <span class="group__label">Color del neón</span>
+        </div>
+        <div class="colors" id="colors">
+          <button class="swatch swatch--cian" type="button" data-color="#38e8ff" title="Cian"></button>
+          <button class="swatch swatch--violeta" type="button" data-color="#b06bff" title="Violeta"></button>
+          <button class="swatch swatch--verde" type="button" data-color="#46f0a0" title="Verde"></button>
+          <button class="swatch swatch--ambar" type="button" data-color="#ffb347" title="Ámbar"></button>
+          <button class="swatch swatch--rosa" type="button" data-color="#ff5fa2" title="Rosa"></button>
+          <button class="swatch swatch--rojo" type="button" data-color="#ff5b5b" title="Rojo"></button>
+          <input class="picker" id="custom" type="color" aria-label="Otro color" title="Otro color" />
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="group__head">
+          <span class="group__label">Fondo</span>
+          <span class="group__value" id="opacity-value">62%</span>
+        </div>
+        <input
+          class="range"
+          id="opacity"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          aria-label="Opacidad del fondo"
+        />
+      </section>
+
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="actions">
+        <button class="btn" id="cancel" type="button">Cancelar</button>
+        <button class="btn btn--primary" id="save" type="button">Guardar</button>
+      </div>
+    </main>
+    <script src="settings.js"></script>
+  </body>
+</html>

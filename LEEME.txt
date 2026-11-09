@@ -1,0 +1,58 @@
+RELOJ GLASS 1.1.0 - reloj de escritorio con tu nombre
+=====================================================
+
+QUE ES
+  Widget de escritorio para Windows 10/11 de 64 bits: reloj grande con segundos
+  y tu nombre debajo, sobre un panel de cristal ciberpunk azul.
+  Vive en el escritorio: no se pone por encima de otras ventanas y no ocupa
+  sitio en la barra de tareas.
+
+INSTALAR
+  1. Doble clic en "Reloj-glass-Setup-1.1.0.exe".
+  2. La primera vez Windows puede avisar ("Windows protegio tu PC"): pulsa
+     "Mas informacion" y luego "Ejecutar de todas formas". El programa no esta
+     firmado digitalmente; es normal en programas gratuitos.
+  3. Sigue el asistente en espanol. Se instala solo para tu usuario, sin pedir
+     administrador, y crea accesos en el escritorio y en el menu Inicio.
+  4. Al terminar se abre solo y queda arrancando con Windows.
+
+AJUSTES (CLICK DERECHO SOBRE EL RELOJ)
+  Cambiar nombre...
+    - Escribe tu nombre (hasta 28 caracteres) y pulsa Guardar.
+    - Atajo: F2.
+  Ajustes...
+    - Tamano: S / M / L (320x178, 380x210, 460x252). Se aplica al momento.
+    - Color del neon: seis colores de un clic (cian, violeta, verde, ambar,
+      rosa, rojo) o cualquier otro con el selector de la derecha.
+    - Fondo: de 0 a 100 % de opacidad del cristal (0 = reloj sin panel).
+  Salir
+    - Cierra el widget. Tambien con la tecla Esc.
+  Todo se guarda en tu configuracion y se recuerda siempre, tambien al
+  reinstalar. A mano: %APPDATA%\glass-clock-widget\config.json
+
+MOVERLO
+  Arrastralo con el raton a donde quieras: recuerda la posicion.
+
+DESINSTALAR
+  - Configuracion -> Aplicaciones -> Aplicaciones instaladas -> Reloj glass ->
+    Desinstalar.
+  - Borra el programa, los accesos directos, el arranque automatico y las
+    caches. Tu configuracion y tu nombre se conservan por si vuelves a
+    instalarlo; para borrarlo todo, elimina tambien la carpeta
+    %APPDATA%\glass-clock-widget
+
+VERSION PORTABLE (SIN INSTALAR)
+  Existe tambien como archivo unico, "Reloj-glass-1.1.0.exe" (se entrega
+  aparte): se copia a cualquier carpeta y se abre con doble clic. Tarda algo
+  mas en arrancar porque se descomprime cada vez.
+
+QUE HAY DE NUEVO EN 1.1.0
+  - Nombre configurable sin editar JSON (menu o F2).
+  - Ventana de Ajustes: tamano, color del neon y opacidad del fondo.
+  - El desinstalador ya no deja restos: quita el arranque automatico y limpia
+    las caches, conservando tu configuracion.
+
+NOTAS
+  - No se conecta a internet ni envia nada.
+  - SHA-256 del instalador:
+    ad2318e1552d642feaee467404c4e32f3e89de4b19fd7658ca72197dc45092fe
