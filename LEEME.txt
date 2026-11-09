@@ -7,6 +7,12 @@ QUE ES
   Vive en el escritorio: no se pone por encima de otras ventanas y no ocupa
   sitio en la barra de tareas.
 
+QUE HAY EN ESTE ZIP
+  Reloj-glass-Setup-1.1.0.exe   el instalador (pasos en INSTALAR)
+  LEEME.txt                     esta nota
+  capturas\widget.png           el reloj sobre el escritorio
+  capturas\ajustes.png          la ventana de Ajustes
+
 INSTALAR
   1. Doble clic en "Reloj-glass-Setup-1.1.0.exe".
   2. La primera vez Windows puede avisar ("Windows protegio tu PC"): pulsa
@@ -51,6 +57,10 @@ QUE HAY DE NUEVO EN 1.1.0
   - Ventana de Ajustes: tamano, color del neon y opacidad del fondo.
   - El desinstalador ya no deja restos: quita el arranque automatico y limpia
     las caches, conservando tu configuracion.
+
+DESCARGAS Y NOVEDADES
+  Repositorio, ultima version y notas de cada cambio:
+  https://github.com/nachoweb3/reloj-glass/releases
 
 NOTAS
   - No se conecta a internet ni envia nada.
