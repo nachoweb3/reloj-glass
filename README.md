@@ -1,5 +1,8 @@
 # Reloj glass · @nacho_web3
 
+[![Última versión](https://img.shields.io/github/v/release/nachoweb3/reloj-glass?label=versi%C3%B3n&color=38e8ff)](https://github.com/nachoweb3/reloj-glass/releases/latest)
+[![Descargas](https://img.shields.io/github/downloads/nachoweb3/reloj-glass/total?label=descargas&color=38e8ff)](https://github.com/nachoweb3/reloj-glass/releases)
+
 Widget de escritorio para Windows: reloj grande con segundos y el handle `@nacho_web3` debajo, todo en
 "cristal" sobre una ventana **transparente, sin fondo y sin marco**. Está hecho con Electron y vive al
 nivel del escritorio: no se pone por encima de otras aplicaciones ni ocupa un hueco en la barra de tareas.
