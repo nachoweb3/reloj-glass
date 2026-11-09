@@ -27,10 +27,10 @@ Node ni `npm`.
 | `Reloj-glass-<version>.exe` | Portable: un único `.exe` autocontenido, sin instalar nada. |
 | `LEEME.txt` | Instrucciones cortas, las mismas de esta página. |
 
-| Widget en el escritorio | Ventana de Ajustes |
-| :---: | :---: |
-| <img src="docs/widget.png" width="480" alt="Widget de cristal con la hora, los segundos y @nacho_web3 sobre el escritorio"> | <img src="docs/ajustes.png" width="260" alt="Ventana de Ajustes con tamaño S/M/L, color del neón y fondo"> |
-| Arrastrable, segundos en un chip y halo cian. | Tamaño, color y opacidad del cristal, sin tocar el JSON. |
+| Widget en el escritorio | En movimiento | Ventana de Ajustes |
+| :---: | :---: | :---: |
+| <img src="docs/widget.png" width="330" alt="Widget de cristal con la hora, los segundos y @nacho_web3 sobre el escritorio"> | <img src="docs/widget.gif" width="330" alt="El widget en movimiento: los segundos avanzan, el halo respira y una banda de luz recorre el panel"> | <img src="docs/ajustes.png" width="215" alt="Ventana de Ajustes con tamaño S/M/L, color del neón y fondo"> |
+| Arrastrable, segundos en un chip y halo cian. | Aura que respira, barrido de luz y segundos al segundo. | Tamaño, color y opacidad del cristal, sin tocar el JSON. |
 
 ---
 
@@ -269,7 +269,7 @@ arrancar.bat      lanzador de doble clic para la versión de desarrollo
 preview/          vista previa en navegador sobre un fondo de ejemplo
 build/            icono del .exe y del instalador (icon.ico, icon.png)
 assets/           icono de la ventana (icon.png)
-docs/             capturas para el README (widget y ajustes)
+docs/             capturas y GIF para el README (widget y ajustes)
 tools/            generador del icono (make-icon.js)
 dist/             salida de electron-builder (instalador, portable y win-unpacked)
 ```
